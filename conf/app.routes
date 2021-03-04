@@ -20,3 +20,40 @@ GET         /account/sign-out                            controllers.auth.AuthCo
 GET         /account/signed-out                          controllers.auth.SignedOutController.onPageLoad
 
 GET         /unauthorised                                controllers.UnauthorisedController.onPageLoad
+
+GET        /checkboxExample                        controllers.CheckboxExampleController.onPageLoad(mode: Mode = NormalMode)
+POST       /checkboxExample                        controllers.CheckboxExampleController.onSubmit(mode: Mode = NormalMode)
+GET        /changeCheckboxExample                  controllers.CheckboxExampleController.onPageLoad(mode: Mode = CheckMode)
+POST       /changeCheckboxExample                  controllers.CheckboxExampleController.onSubmit(mode: Mode = CheckMode)
+
+GET        /dateExample                  controllers.DateExampleController.onPageLoad(mode: Mode = NormalMode)
+POST       /dateExample                  controllers.DateExampleController.onSubmit(mode: Mode = NormalMode)
+GET        /changeDateExample                        controllers.DateExampleController.onPageLoad(mode: Mode = CheckMode)
+POST       /changeDateExample                        controllers.DateExampleController.onSubmit(mode: Mode = CheckMode)
+
+GET        /guidanceExample                       controllers.GuidanceExampleController.onPageLoad()
+
+GET        /intExample                  controllers.IntExampleController.onPageLoad(mode: Mode = NormalMode)
+POST       /intExample                  controllers.IntExampleController.onSubmit(mode: Mode = NormalMode)
+GET        /changeIntExample                        controllers.IntExampleController.onPageLoad(mode: Mode = CheckMode)
+POST       /changeIntExample                        controllers.IntExampleController.onSubmit(mode: Mode = CheckMode)
+
+GET        /optionsExample                        controllers.OptionsExampleController.onPageLoad(mode: Mode = NormalMode)
+POST       /optionsExample                        controllers.OptionsExampleController.onSubmit(mode: Mode = NormalMode)
+GET        /changeOptionsExample                  controllers.OptionsExampleController.onPageLoad(mode: Mode = CheckMode)
+POST       /changeOptionsExample                  controllers.OptionsExampleController.onSubmit(mode: Mode = CheckMode)
+
+GET        /questionExample                        controllers.QuestionExampleController.onPageLoad(mode: Mode = NormalMode)
+POST       /questionExample                        controllers.QuestionExampleController.onSubmit(mode: Mode = NormalMode)
+GET        /changeQuestionExample                  controllers.QuestionExampleController.onPageLoad(mode: Mode = CheckMode)
+POST       /changeQuestionExample                  controllers.QuestionExampleController.onSubmit(mode: Mode = CheckMode)
+
+GET        /stringExample                        controllers.StringExampleController.onPageLoad(mode: Mode = NormalMode)
+POST       /stringExample                        controllers.StringExampleController.onSubmit(mode: Mode = NormalMode)
+GET        /changeStringExample                  controllers.StringExampleController.onPageLoad(mode: Mode = CheckMode)
+POST       /changeStringExample                  controllers.StringExampleController.onSubmit(mode: Mode = CheckMode)
+
+GET        /yesNoExample                        controllers.YesNoExampleController.onPageLoad(mode: Mode = NormalMode)
+POST       /yesNoExample                        controllers.YesNoExampleController.onSubmit(mode: Mode = NormalMode)
+GET        /changeYesNoExample                  controllers.YesNoExampleController.onPageLoad(mode: Mode = CheckMode)
+POST       /changeYesNoExample                  controllers.YesNoExampleController.onSubmit(mode: Mode = CheckMode)

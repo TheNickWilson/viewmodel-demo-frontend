@@ -23,4 +23,60 @@ import pages._
 import play.api.libs.json.{JsValue, Json}
 
 trait UserAnswersEntryGenerators extends PageGenerators with ModelGenerators {
+
+  implicit lazy val arbitraryYesNoExampleUserAnswersEntry: Arbitrary[(YesNoExamplePage.type, JsValue)] =
+    Arbitrary {
+      for {
+        page  <- arbitrary[YesNoExamplePage.type]
+        value <- arbitrary[Boolean].map(Json.toJson(_))
+      } yield (page, value)
+    }
+
+  implicit lazy val arbitraryStringExampleUserAnswersEntry: Arbitrary[(StringExamplePage.type, JsValue)] =
+    Arbitrary {
+      for {
+        page  <- arbitrary[StringExamplePage.type]
+        value <- arbitrary[String].suchThat(_.nonEmpty).map(Json.toJson(_))
+      } yield (page, value)
+    }
+
+  implicit lazy val arbitraryQuestionExampleUserAnswersEntry: Arbitrary[(QuestionExamplePage.type, JsValue)] =
+    Arbitrary {
+      for {
+        page  <- arbitrary[QuestionExamplePage.type]
+        value <- arbitrary[QuestionExample].map(Json.toJson(_))
+      } yield (page, value)
+    }
+
+  implicit lazy val arbitraryOptionsExampleUserAnswersEntry: Arbitrary[(OptionsExamplePage.type, JsValue)] =
+    Arbitrary {
+      for {
+        page  <- arbitrary[OptionsExamplePage.type]
+        value <- arbitrary[OptionsExample].map(Json.toJson(_))
+      } yield (page, value)
+    }
+
+  implicit lazy val arbitraryIntExampleUserAnswersEntry: Arbitrary[(IntExamplePage.type, JsValue)] =
+    Arbitrary {
+      for {
+        page  <- arbitrary[IntExamplePage.type]
+        value <- arbitrary[Int].map(Json.toJson(_))
+      } yield (page, value)
+    }
+
+  implicit lazy val arbitraryDateExampleUserAnswersEntry: Arbitrary[(DateExamplePage.type, JsValue)] =
+    Arbitrary {
+      for {
+        page  <- arbitrary[DateExamplePage.type]
+        value <- arbitrary[Int].map(Json.toJson(_))
+      } yield (page, value)
+    }
+
+  implicit lazy val arbitraryCheckboxExampleUserAnswersEntry: Arbitrary[(CheckboxExamplePage.type, JsValue)] =
+    Arbitrary {
+      for {
+        page  <- arbitrary[CheckboxExamplePage.type]
+        value <- arbitrary[CheckboxExample].map(Json.toJson(_))
+      } yield (page, value)
+    }
 }

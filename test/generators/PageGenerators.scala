@@ -20,4 +20,25 @@ import org.scalacheck.Arbitrary
 import pages._
 
 trait PageGenerators {
+
+  implicit lazy val arbitraryYesNoExamplePage: Arbitrary[YesNoExamplePage.type] =
+    Arbitrary(YesNoExamplePage)
+
+  implicit lazy val arbitraryStringExamplePage: Arbitrary[StringExamplePage.type] =
+    Arbitrary(StringExamplePage)
+
+  implicit lazy val arbitraryQuestionExamplePage: Arbitrary[QuestionExamplePage.type] =
+    Arbitrary(QuestionExamplePage)
+
+  implicit lazy val arbitraryOptionsExamplePage: Arbitrary[OptionsExamplePage.type] =
+    Arbitrary(OptionsExamplePage)
+
+  implicit lazy val arbitraryIntExamplePage: Arbitrary[IntExamplePage.type] =
+    Arbitrary(IntExamplePage)
+
+  implicit lazy val arbitraryDateExamplePage: Arbitrary[DateExamplePage.type] =
+    Arbitrary(DateExamplePage)
+
+  implicit lazy val arbitraryCheckboxExamplePage: Arbitrary[CheckboxExamplePage.type] =
+    Arbitrary(CheckboxExamplePage)
 }

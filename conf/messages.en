@@ -60,3 +60,66 @@ signedOut.guidance = We did not save your answers.
 
 unauthorised.title = You can’t access this service with this account
 unauthorised.heading = You can’t access this service with this account
+
+checkboxExample.title = CheckboxExample
+checkboxExample.heading = CheckboxExample
+checkboxExample.option1 = Option1
+checkboxExample.option2 = Option2
+checkboxExample.checkYourAnswersLabel = CheckboxExample
+checkboxExample.error.required = Select checkboxExample
+checkboxExample.change.hidden = CheckboxExample
+
+dateExample.title = DateExample
+dateExample.heading = DateExample
+dateExample.hint = For example, 12 11 2007
+dateExample.checkYourAnswersLabel = DateExample
+dateExample.error.required.all = Enter the dateExample
+dateExample.error.required.two = The dateExample must include {0} and {1}
+dateExample.error.required = The dateExample must include {0}
+dateExample.error.invalid = Enter a real DateExample
+dateExample.change.hidden = DateExample
+
+guidanceExample.title = guidanceExample
+guidanceExample.heading = guidanceExample
+
+intExample.title = IntExample
+intExample.heading = IntExample
+intExample.checkYourAnswersLabel = IntExample
+intExample.error.nonNumeric = Enter your intExample using numbers
+intExample.error.required = Enter your intExample
+intExample.error.wholeNumber = Enter your intExample using whole numbers
+intExample.error.outOfRange = IntExample must be between {0} and {1}
+intExample.change.hidden = IntExample
+
+optionsExample.title = OptionsExample
+optionsExample.heading = OptionsExample
+optionsExample.option1 = Option1
+optionsExample.option2 = Option2
+optionsExample.checkYourAnswersLabel = OptionsExample
+optionsExample.error.required = Select optionsExample
+optionsExample.change.hidden = OptionsExample
+
+questionExample.title = questionExample
+questionExample.heading = questionExample
+questionExample.field1 = field1
+questionExample.field2 = field2
+questionExample.checkYourAnswersLabel = QuestionExample
+questionExample.error.field1.required = Enter field1
+questionExample.error.field2.required = Enter field2
+questionExample.error.field1.length = field1 must be 100 characters or less
+questionExample.error.field2.length = field2 must be 100 characters or less
+questionExample.field1.change.hidden = field1
+questionExample.field2.change.hidden = field2
+
+stringExample.title = stringExample
+stringExample.heading = stringExample
+stringExample.checkYourAnswersLabel = stringExample
+stringExample.error.required = Enter stringExample
+stringExample.error.length = StringExample must be 100 characters or less
+stringExample.change.hidden = StringExample
+
+yesNoExample.title = yesNoExample
+yesNoExample.heading = yesNoExample
+yesNoExample.checkYourAnswersLabel = yesNoExample
+yesNoExample.error.required = Select yes if yesNoExample
+yesNoExample.change.hidden = YesNoExample
