@@ -1,0 +1,87 @@
+@import config.FrontendAppConfig
+@import viewmodels.govuk.Phase._
+
+@this(
+    appConfig: FrontendAppConfig,
+    govukLayout: GovukLayout,
+    govukBackLink: GovukBackLink,
+    govukPhaseBanner: GovukPhaseBanner,
+    hmrcStandardHeader: HmrcStandardHeader,
+    hmrcStandardFooter: HmrcStandardFooter,
+    hmrcTrackingConsentSnippet: HmrcTrackingConsentSnippet,
+    hmrcLanguageSelect: HmrcLanguageSelect,
+    hmrcTimeoutDialog: HmrcTimeoutDialog,
+    hmrcReportTechnicalIssueHelper: HmrcReportTechnicalIssueHelper
+)
+
+@(pageTitle: String, showBackLink: Boolean = true, timeout: Boolean = true, showSignOut: Boolean = true)(contentBlock: Html)(implicit request: Request[_], messages: Messages)
+
+@head = {
+    @hmrcTrackingConsentSnippet()
+
+    <!--[if lte IE 8]><link href='@controllers.routes.Assets.versioned("stylesheets/application-ie-8.css")' rel="stylesheet" type="text/css" /><![endif]-->
+    <!--[if gt IE 8]><!--> <link href='@controllers.routes.Assets.versioned("stylesheets/application.css")' media="screen" rel="stylesheet" type="text/css" /><!--<![endif]-->
+
+    @if(timeout){
+        @hmrcTimeoutDialog(TimeoutDialog(
+            timeout             = Some(appConfig.timeout),
+            countdown           = Some(appConfig.countdown),
+            keepAliveUrl        = Some(routes.KeepAliveController.keepAlive().url),
+            keepAliveButtonText = Some(messages("timeout.keepAlive")),
+            signOutUrl          = Some(controllers.auth.routes.AuthController.signOut().url),
+            signOutButtonText   = Some(messages("timeout.signOut")),
+            title               = Some(messages("timeout.title")),
+            message             = Some(messages("timeout.message"))
+        ))
+    }
+}
+
+@scripts = {
+    <script src='@controllers.routes.Assets.versioned("javascripts/application.min.js")'></script>
+    <script src='@controllers.routes.Assets.versioned("lib/govuk-frontend/govuk/all.js")'></script>
+    <script src='@controllers.routes.Assets.versioned("lib/hmrc-frontend/hmrc/all.js")'></script>
+    <script>window.GOVUKFrontend.initAll();</script>
+    <script>window.HMRCFrontend.initAll();</script>
+}
+
+@beforeContent = {
+
+    @govukPhaseBanner(
+        PhaseBannerViewModel(
+            phase       = Alpha,
+            feedbackUrl = appConfig.feedbackUrl
+        )
+    )
+
+    @if(appConfig.languageTranslationEnabled) {
+        @hmrcLanguageSelect(LanguageSelect(
+            if (messages.lang.code == "cy") Cy else En,
+            (En, routes.LanguageSwitchController.switchToLanguage("en").url),
+            (Cy, routes.LanguageSwitchController.switchToLanguage("cy").url)
+        ))
+    }
+
+    @if(showBackLink) {
+        @govukBackLink(BackLinkViewModel(href = "#"))
+    }
+}
+
+@content = {
+    @contentBlock
+
+    <div class="govuk-!-margin-top-8">
+        @hmrcReportTechnicalIssueHelper()
+    </div>
+}
+
+@govukLayout(
+    pageTitle   = Some(pageTitle),
+    headBlock   = Some(head),
+    headerBlock = Some(hmrcStandardHeader(
+        serviceUrl = Some(routes.IndexController.onPageLoad().url),
+        signOutUrl = if(showSignOut) Some(controllers.auth.routes.AuthController.signOut().url) else None
+    )),
+    beforeContentBlock = Some(beforeContent),
+    footerBlock        = Some(hmrcStandardFooter()),
+    scriptsBlock       = Some(scripts)
+)(content)
