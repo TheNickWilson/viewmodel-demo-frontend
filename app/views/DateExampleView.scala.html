@@ -35,9 +35,9 @@
         @govukDateInput(
             DateViewModel(
                 field  = form("value"),
-                legend = LegendViewModel("dateExample.heading").asPageHeading()
+                legend = LegendViewModel(messages("dateExample.heading")).asPageHeading()
             )
-            .withHint(HintViewModel("dateExample.hint"))
+            .withHint(HintViewModel(messages("dateExample.hint")))
         )
 
         @govukButton(

@@ -27,6 +27,13 @@ import models._
 class Navigator @Inject()() {
 
   private val normalRoutes: Page => UserAnswers => Call = {
+    case CheckboxExamplePage => _ => routes.DateExampleController.onPageLoad(NormalMode)
+    case DateExamplePage     => _ => routes.IntExampleController.onPageLoad(NormalMode)
+    case IntExamplePage      => _ => routes.OptionsExampleController.onPageLoad(NormalMode)
+    case OptionsExamplePage  => _ => routes.QuestionExampleController.onPageLoad(NormalMode)
+    case QuestionExamplePage => _ => routes.StringExampleController.onPageLoad(NormalMode)
+    case StringExamplePage   => _ => routes.YesNoExampleController.onPageLoad(NormalMode)
+    case YesNoExamplePage    => _ => routes.CheckYourAnswersController.onPageLoad()
     case _ => _ => routes.IndexController.onPageLoad()
   }
 
