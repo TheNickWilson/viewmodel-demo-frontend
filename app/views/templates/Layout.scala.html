@@ -15,31 +15,30 @@
  *@
 
 @import config.FrontendAppConfig
-@import viewmodels.govuk.Phase._
+@import uk.gov.hmrc.hmrcfrontend.views.config.StandardAlphaBanner
+@import views.html.helper.CSPNonce
 
 @this(
     appConfig: FrontendAppConfig,
     govukLayout: GovukLayout,
     govukBackLink: GovukBackLink,
     govukPhaseBanner: GovukPhaseBanner,
+    hmrcHead: HmrcHead,
     hmrcStandardHeader: HmrcStandardHeader,
     hmrcStandardFooter: HmrcStandardFooter,
-    hmrcTrackingConsentSnippet: HmrcTrackingConsentSnippet,
     hmrcLanguageSelect: HmrcLanguageSelect,
     hmrcTimeoutDialog: HmrcTimeoutDialog,
-    hmrcReportTechnicalIssueHelper: HmrcReportTechnicalIssueHelper
+    hmrcReportTechnicalIssueHelper: HmrcReportTechnicalIssueHelper,
+    hmrcScripts: HmrcScripts,
+    alphaBanner: StandardAlphaBanner
 )
 
 @(pageTitle: String, showBackLink: Boolean = true, timeout: Boolean = true, showSignOut: Boolean = true)(contentBlock: Html)(implicit request: Request[_], messages: Messages)
 
 @head = {
-    @hmrcTrackingConsentSnippet()
-
-    <!--[if lte IE 8]><link href='@controllers.routes.Assets.versioned("stylesheets/application-ie-8.css")' rel="stylesheet" type="text/css" /><![endif]-->
-    <!--[if gt IE 8]><!--> <link href='@controllers.routes.Assets.versioned("stylesheets/application.css")' media="screen" rel="stylesheet" type="text/css" /><!--<![endif]-->
-
-    @if(timeout){
-        @hmrcTimeoutDialog(TimeoutDialog(
+  @hmrcHead(nonce = CSPNonce.get,
+      headBlock = if(timeout) { Some(
+        hmrcTimeoutDialog(TimeoutDialog(
             timeout             = Some(appConfig.timeout),
             countdown           = Some(appConfig.countdown),
             keepAliveUrl        = Some(routes.KeepAliveController.keepAlive().url),
@@ -49,25 +48,11 @@
             title               = Some(messages("timeout.title")),
             message             = Some(messages("timeout.message"))
         ))
-    }
-}
-
-@scripts = {
-    <script src='@controllers.routes.Assets.versioned("javascripts/application.min.js")'></script>
-    <script src='@controllers.routes.Assets.versioned("lib/govuk-frontend/govuk/all.js")'></script>
-    <script src='@controllers.routes.Assets.versioned("lib/hmrc-frontend/hmrc/all.js")'></script>
-    <script>window.GOVUKFrontend.initAll();</script>
-    <script>window.HMRCFrontend.initAll();</script>
+      ) } else None
+  )
 }
 
 @beforeContent = {
-
-    @govukPhaseBanner(
-        PhaseBannerViewModel(
-            phase       = Alpha,
-            feedbackUrl = appConfig.feedbackUrl
-        )
-    )
 
     @if(appConfig.languageTranslationEnabled) {
         @hmrcLanguageSelect(LanguageSelect(
@@ -95,9 +80,10 @@
     headBlock   = Some(head),
     headerBlock = Some(hmrcStandardHeader(
         serviceUrl = Some(routes.IndexController.onPageLoad().url),
-        signOutUrl = if(showSignOut) Some(controllers.auth.routes.AuthController.signOut().url) else None
+        signOutUrl = if(showSignOut) Some(controllers.auth.routes.AuthController.signOut().url) else None,
+        phaseBanner = Some(alphaBanner(appConfig.feedbackUrl))
     )),
     beforeContentBlock = Some(beforeContent),
     footerBlock        = Some(hmrcStandardFooter()),
-    scriptsBlock       = Some(scripts)
+    scriptsBlock       = Some(hmrcScripts(nonce = CSPNonce.get))
 )(content)

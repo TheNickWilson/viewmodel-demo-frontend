@@ -25,6 +25,8 @@ import viewmodels.ErrorMessageAwareness
 
 trait DateFluency {
 
+  // PLATUI-1055: On our backlog: PLATUI-1013
+
   object DateViewModel extends ErrorMessageAwareness {
 
     def apply(

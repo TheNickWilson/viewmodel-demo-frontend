@@ -23,6 +23,7 @@ import uk.gov.hmrc.govukfrontend.views.viewmodels.fieldset.{Fieldset, Legend}
 import uk.gov.hmrc.govukfrontend.views.viewmodels.hint.Hint
 import uk.gov.hmrc.govukfrontend.views.viewmodels.radios.{RadioItem, Radios}
 import viewmodels.ErrorMessageAwareness
+import uk.gov.hmrc.govukfrontend.views.Implicits._
 
 trait RadiosFluency {
 
@@ -45,11 +46,10 @@ trait RadiosFluency {
                fieldset: Fieldset
              )(implicit messages: Messages): Radios =
       Radios(
-        fieldset     = Some(fieldset),
-        name         = field.name,
-        items        = items map (item => item copy (checked = field.value.isDefined && field.value == item.value)),
-        errorMessage = errorMessage(field)
-      )
+        items = items,
+        fieldset = Some(fieldset)
+      ).withFormField(field)
+
 
     def yesNo(
                field: Field,

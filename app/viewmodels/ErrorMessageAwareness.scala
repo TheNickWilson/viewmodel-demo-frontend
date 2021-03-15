@@ -23,6 +23,9 @@ import uk.gov.hmrc.govukfrontend.views.viewmodels.errormessage.ErrorMessage
 
 trait ErrorMessageAwareness {
 
+  // PLATUI-1055: This logic has been added into play-frontend-govuk withFormField(field: Field)
+  // We have tickets on our backlog to look at the changes need to RichCheckboxes (PLATUI-1072), and
+  // DateInput (PLATUI-1013)
   def errorMessage(field: Field)(implicit messages: Messages): Option[ErrorMessage] =
     field.error
       .map {

@@ -22,6 +22,7 @@ import uk.gov.hmrc.govukfrontend.views.viewmodels.hint.Hint
 import uk.gov.hmrc.govukfrontend.views.viewmodels.input.{Input, PrefixOrSuffix}
 import uk.gov.hmrc.govukfrontend.views.viewmodels.label.Label
 import viewmodels.{ErrorMessageAwareness, InputWidth}
+import uk.gov.hmrc.govukfrontend.views.Implicits._
 
 trait InputFluency {
 
@@ -30,14 +31,9 @@ trait InputFluency {
     def apply(
                field: Field,
                label: Label
-             )(implicit messages: Messages): Input =
-      Input(
-        id           = field.id,
-        name         = field.name,
-        value        = field.value,
-        label        = label,
-        errorMessage = errorMessage(field)
-      )
+             )(implicit messages: Messages): Input = {
+      Input(label = label).withFormField(field)
+    }
   }
 
   implicit class FluentInput(input: Input) {
@@ -53,8 +49,9 @@ trait InputFluency {
         .withInputType("numeric")
         .withPattern("[0-9]*")
 
-    def withId(id: String): Input =
-      input copy (id = id)
+    // Suggest this be deleted as mandatory to create with id from constructor
+    // def withId(id: String): Input =
+    //   input copy (id = id)
 
     def withInputType(inputType: String): Input =
       input copy (inputType = inputType)
