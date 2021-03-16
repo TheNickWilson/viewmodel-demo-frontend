@@ -18,6 +18,11 @@ package viewmodels
 
 package object govuk {
 
+  // PLATUI-1055: Noticed that some form inputs have not been implemented, specifically:
+  // Select,
+  // Textarea,
+  // CharacterCount
+  
   object GovukFluency
     extends BackLinkFluency
       with ButtonFluency
