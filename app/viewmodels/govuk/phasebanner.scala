@@ -19,8 +19,11 @@ package viewmodels.govuk
 import play.api.i18n.Messages
 import uk.gov.hmrc.govukfrontend.views.viewmodels.content.{HtmlContent, Text}
 import uk.gov.hmrc.govukfrontend.views.viewmodels.phasebanner.PhaseBanner
+import viewmodels.govuk.tag._
 
-trait PhaseBannerFluency extends TagFluency {
+object phasebanner extends PhaseBannerFluency
+
+trait PhaseBannerFluency {
 
   object PhaseBannerViewModel {
 

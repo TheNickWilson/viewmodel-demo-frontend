@@ -21,10 +21,9 @@ import models.{CheckMode, UserAnswers}
 import pages.YesNoExamplePage
 import play.api.i18n.Messages
 import uk.gov.hmrc.govukfrontend.views.viewmodels.summarylist.SummaryListRow
-import viewmodels.govuk.SummaryListFluency
-import viewmodels.ImplicitConversions._
+import viewmodels.govuk._
 
-object YesNoExampleSummary extends SummaryListFluency {
+object YesNoExampleSummary {
 
   def row(answers: UserAnswers)(implicit messages: Messages): Option[SummaryListRow] =
     answers.get(YesNoExamplePage).map {
