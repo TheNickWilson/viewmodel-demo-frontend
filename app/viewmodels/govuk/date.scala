@@ -23,6 +23,8 @@ import uk.gov.hmrc.govukfrontend.views.viewmodels.fieldset.{Fieldset, Legend}
 import uk.gov.hmrc.govukfrontend.views.viewmodels.hint.Hint
 import viewmodels.ErrorMessageAwareness
 
+object date extends DateFluency
+
 trait DateFluency {
 
   object DateViewModel extends ErrorMessageAwareness {

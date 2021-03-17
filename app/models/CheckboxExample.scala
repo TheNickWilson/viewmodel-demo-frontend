@@ -19,11 +19,11 @@ package models
 import play.api.i18n.Messages
 import uk.gov.hmrc.govukfrontend.views.viewmodels.checkboxes.CheckboxItem
 import uk.gov.hmrc.govukfrontend.views.viewmodels.content.Text
-import viewmodels.govuk.CheckboxFluency
+import viewmodels.govuk.checkbox._
 
 sealed trait CheckboxExample
 
-object CheckboxExample extends Enumerable.Implicits with CheckboxFluency {
+object CheckboxExample extends Enumerable.Implicits {
 
   case object Option1 extends WithName("option1") with CheckboxExample
   case object Option2 extends WithName("option2") with CheckboxExample

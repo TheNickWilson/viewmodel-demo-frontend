@@ -22,7 +22,7 @@ import play.api.i18n.{I18nSupport, MessagesApi}
 import play.api.mvc.{Action, AnyContent, MessagesControllerComponents}
 import uk.gov.hmrc.play.bootstrap.frontend.controller.FrontendBaseController
 import viewmodels.checkAnswers._
-import viewmodels.govuk.SummaryListFluency
+import viewmodels.govuk.summarylist._
 import views.html.CheckYourAnswersView
 
 class CheckYourAnswersController @Inject()(
@@ -32,7 +32,7 @@ class CheckYourAnswersController @Inject()(
                                             requireData: DataRequiredAction,
                                             val controllerComponents: MessagesControllerComponents,
                                             view: CheckYourAnswersView
-                                          ) extends FrontendBaseController with I18nSupport with SummaryListFluency {
+                                          ) extends FrontendBaseController with I18nSupport {
 
   def onPageLoad(): Action[AnyContent] = (identify andThen getData andThen requireData) {
     implicit request =>

@@ -16,19 +16,17 @@
 
 package viewmodels
 
-package object govuk {
-
-  object GovukFluency
-    extends BackLinkFluency
-      with ButtonFluency
-      with CheckboxFluency
-      with DateFluency
-      with ErrorSummaryFluency
-      with FieldsetFluency
-      with HintFluency
-      with InputFluency
-      with LabelFluency
-      with PhaseBannerFluency
-      with RadiosFluency
-      with TagFluency
-}
+package object govuk
+  extends ImplicitConversions
+  with govuk.BackLinkFluency
+  with govuk.ButtonFluency
+  with govuk.CheckboxFluency
+  with govuk.DateFluency
+  with govuk.ErrorSummaryFluency
+  with govuk.FieldsetFluency
+  with govuk.HintFluency
+  with govuk.InputFluency
+  with govuk.LabelFluency
+  with govuk.PhaseBannerFluency
+  with govuk.RadiosFluency
+  with govuk.SummaryListFluency
